@@ -1,0 +1,211 @@
+/* Coluna central da home: tudo empilhado com respiro entre as partes */
+.pagina-home {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* O Hero foi feito pra landing page: aqui ele precisa de menos respiro */
+.pagina-home .hero {
+  padding: 32px 0 8px;
+}
+
+/* A caixa da lista acompanha a largura da coluna */
+.pagina-home .lista-produtos {
+  max-width: none;
+}
+
+/* Linha do topo: empurra o botão de sair para a direita */
+.home-topo {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Modificador do .botao: sair é ação secundária, então fica discreto */
+.botao-sair {
+  padding: 7px 15px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.botao-sair:hover {
+  border-color: var(--erro);
+  color: var(--erro);
+  opacity: 1;
+}
+
+/* Formulário de novo produto: campos lado a lado, quebrando linha no celular */
+.form-produto {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.form-produto input {
+  padding: 10px 12px;
+  font-size: 15px;
+  font-family: inherit;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text-h);
+}
+
+.form-produto input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* O nome estica e ocupa o espaço que sobrar */
+.form-produto input[type='text'] {
+  flex: 1;
+  min-width: 150px;
+}
+
+/* A quantidade é curta, então tem largura fixa */
+.form-produto input[type='number'] {
+  width: 120px;
+}
+
+.form-produto .botao {
+  flex-shrink: 0;
+  padding: 10px 18px;
+}
+
+/* Mensagem de erro ocupa a linha inteira, abaixo dos campos */
+.form-produto .erro {
+  flex-basis: 100%;
+  text-align: left;
+}
+
+/* A caixinha que envolve a lista inteira */
+.lista-produtos {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 24px 28px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+}
+
+/* Cabeçalho da caixa: título à esquerda, contagem à direita */
+.lista-produtos-topo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.lista-produtos-topo h2 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--text-h);
+}
+
+.lista-produtos-contagem {
+  font-size: 14px;
+  color: var(--text);
+}
+
+/* A lista: tira as bolinhas e o recuo padrão do <ul> */
+.produtos-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Cada linha da lista */
+.produto-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+/* A última linha não precisa de risco embaixo */
+.produto-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* O nome estica e empurra a quantidade e o botão para a direita */
+.produto-nome {
+  flex: 1;
+  font-size: 16px;
+  color: var(--text-h);
+  overflow-wrap: anywhere;
+}
+
+/* Botão de apagar: quadrado, discreto, só ganha cor quando o mouse chega */
+.produto-apagar {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.produto-apagar:hover {
+  background: var(--erro);
+  color: #fff;
+}
+
+/* O desenho herda a cor do botão, então muda junto no hover */
+.produto-apagar svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* Etiqueta com a quantidade */
+.produto-quantidade {
+  flex-shrink: 0;
+  min-width: 42px;
+  padding: 4px 10px;
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-size: 14px;
+  font-family: var(--mono);
+  text-align: center;
+}
+
+/* Modificador: estoque acabando */
+.produto-quantidade.baixo {
+  border-color: var(--erro);
+  background: transparent;
+  color: var(--erro);
+}
+
+/* Quando não há nenhum produto cadastrado */
+.lista-vazia {
+  margin: 0;
+  padding: 28px 0 4px;
+  color: var(--text);
+  text-align: center;
+}

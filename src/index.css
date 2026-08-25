@@ -52,6 +52,14 @@
   }
 }
 
+/* Faz width e height incluírem padding e borda, em tudo.
+   Sem isso, width: 100% + padding estoura o tamanho do pai. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
 }
@@ -121,7 +129,7 @@ body {
 
 .botao-secundario {
   background: var(--border);
-  color: black;
+  color: var(--text-h);
   border: none;
   padding: 11px;
   border-radius: 6px;
