@@ -181,6 +181,45 @@
   height: 17px;
 }
 
+/* Agrupa − / quantidade / + para ficarem juntos */
+.produto-controle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* Botões de somar e subtrair */
+.produto-passo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-h);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.produto-passo:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Quando não dá pra subtrair, o botão fica apagado e sem cursor de clique */
+.produto-passo:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
 /* Etiqueta com a quantidade */
 .produto-quantidade {
   flex-shrink: 0;

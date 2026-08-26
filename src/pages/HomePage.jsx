@@ -27,6 +27,17 @@ function HomePage(){
         buscarProduto()
     }
 
+    async function atualizarProduto(id, novaQuantidade){
+        const { error } = await supabase.from('produtos').update({quantidade: novaQuantidade}).eq('id', id)
+
+        if(error){
+            console.log(error)
+            return
+        }
+
+        buscarProduto()
+    }
+
     async function sair(){
         await supabase.auth.signOut()
         navigate("/", {replace: true})
@@ -52,7 +63,15 @@ function HomePage(){
                         {produtos.map((produto) => (
                             <li key={produto.id} className="produto-item">
                                 <span className="produto-nome">{produto.nome}</span>
-                                <span className="produto-quantidade">{produto.quantidade}</span>
+
+                                <div className="produto-controle">
+                                    <button className="produto-passo" disabled={produto.quantidade === 0} onClick={() => atualizarProduto(produto.id, produto.quantidade - 1)}>−</button>
+
+                                    <span className="produto-quantidade">{produto.quantidade}</span>
+
+                                    <button className="produto-passo" onClick={() => atualizarProduto(produto.id, produto.quantidade + 1)}>+</button>
+                                </div>
+
                                 <button className="produto-apagar" aria-label="Apagar produto" onClick={() => apagarProduto(produto.id)}>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <path d="M3 6h18" />
