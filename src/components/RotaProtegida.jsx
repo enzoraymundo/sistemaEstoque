@@ -16,8 +16,8 @@ function RotaProtegida({children}){
         rota()
     }, [])
 
-        if(carregando){ return <p>Carregando...</p>}
-        if(!session) { return <Navigate to={"/"} replace/>}
+        if(carregando){ return <p>Carregando...</p> }
+        if(!session) { return <Navigate to={"/"} replace/> }
         return children
 }
 

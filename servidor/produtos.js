@@ -43,6 +43,8 @@ router.post("/", autenticar, async (req, res) => {
 
 router.delete("/:id", autenticar, async (req, res) =>{
     const id = Number(req.params?.id)
+    const validarId = validarNumero(id)
+    if(validarId){ return res.status(400).json({erro: validarId}) }
 
     try{
         const resultado = await pool.query("DELETE FROM produtos where id=$1 AND user_id=$2", [id, req.userId] )
@@ -61,11 +63,11 @@ router.delete("/:id", autenticar, async (req, res) =>{
     
 })
 
-router.patch("/", autenticar, async (req, res) => {
-    const produto = req.body?.produto
+router.patch("/:id", autenticar, async (req, res) => {
+    const id = Number(req.params?.id)
     const quantidade = req.body?.quantidade
 
-        const validarProduto = validarNumero(produto)
+        const validarProduto = validarNumero(id)
         if(validarProduto){
             return res.status(400).json({erro: validarProduto})
         }
@@ -76,7 +78,7 @@ router.patch("/", autenticar, async (req, res) => {
         }
 
     try {
-        const resultado = await pool.query("UPDATE produtos SET quantidade=$1 WHERE id=$2 AND user_id=$3", [quantidade, produto, req.userId])
+        const resultado = await pool.query("UPDATE produtos SET quantidade=$1 WHERE id=$2 AND user_id=$3", [quantidade, id, req.userId])
 
         if(resultado.rowCount == 0){
             res.status(404).json({erro: "Nenhum produto alterado"})

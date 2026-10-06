@@ -29,12 +29,12 @@ function HomePage(){
         }
     }
 
-    async function apagarProduto(params){
+    async function apagarProduto(id){
         const token = localStorage.getItem('token')
 
 
         try{
-            await fetch(`http://localhost:3000/produtos/${params}`, {
+            await fetch(`http://localhost:3000/produtos/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-type": "Application/json",
@@ -48,18 +48,17 @@ function HomePage(){
         }
     }
     
-    async function atualizarProduto(produto, quantidade){
+    async function atualizarProduto(id, quantidade){
         const token = localStorage.getItem('token')
 
         try{
-            const data = await fetch("http://localhost:3000/produtos", {
+            const data = await fetch(`http://localhost:3000/produtos/${id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-type": "Application/json",
                     "Authorization": token
                 },
                 body: JSON.stringify({
-                    produto: produto,
                     quantidade: quantidade
                 })
             })

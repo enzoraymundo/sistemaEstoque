@@ -22,11 +22,11 @@ router.post("/usuarios", async (req, res) =>{
         const resultado = await pool.query("INSERT INTO usuarios(email, senha_hash) VALUES ($1, $2)", [email, hash])
 
         console.log(resultado)
-        res.status(204).json({resultado: "Usuário cadastrado"})
+        res.status(201).json({resultado: "Usuário cadastrado"})
 
     } catch(erro){
         if(erro.code == 23505){
-            res.status(409).json({erro: "Esse Email já foi cadastrado"})
+            return res.status(409).json({erro: "Esse Email já foi cadastrado"})
         }
         console.log(erro.message)
         res.status(500).json({erro: "Erro do servidor"})
